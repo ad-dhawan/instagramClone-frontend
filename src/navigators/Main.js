@@ -17,7 +17,7 @@ const Main = () => {
     const {loading, loggedIn} = useSelector((state) => state)
     return(
         <>
-            {loggedIn ? <MainNavigator/> : <AuthNavigator />}
+            {loggedIn ? <MainNavigator /> : <AuthNavigator />}
 
             <Modal transparent visible={loading} animationType="fade">
                 <View style={styles.modal}>
