@@ -9,9 +9,13 @@ import AuthNavigator from '../navigators/AuthNavigator'
 
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import Entypo from 'react-native-vector-icons/Entypo'
 
 AntDesign.loadFont();
 MaterialIcons.loadFont();
+Ionicons.loadFont();
+Entypo.loadFont();
 
 const Main = () => {
     const {loading, loggedIn} = useSelector((state) => state)

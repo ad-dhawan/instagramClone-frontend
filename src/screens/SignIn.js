@@ -1,19 +1,32 @@
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
+import {View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, SafeAreaView} from 'react-native';
 import {TextInput} from 'react-native-paper';
+import { useDispatch } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 import { TEXT, PRIMARY, BACKGROUND, WHITE_TEXT } from '../utils/colors';
+import { login } from '../redux/actions/auth';
 
 const {width, height} = Dimensions.get('screen')
 
 const SignIn = ({navigation}) => {
+    const [hidePass, setHidePass] = useState(true);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const dispatch = useDispatch();
+
+    const onLogin = () => {
+        dispatch(login({
+            email: username,
+            password: password
+        }))
+    }
+
     return(
-        <View style={styles.mainContainer}>
+        <SafeAreaView style={styles.mainContainer}>
             <View style={styles.logoContainer}>
                 <Image source={require('../assets/instagram_logo.png')} style={styles.logo} />
                 <Text style={styles.logoText}>Instagram Clone</Text>
@@ -38,13 +51,26 @@ const SignIn = ({navigation}) => {
                         label="Password"
                         onChangeText={setPassword}
                         value={password}
+                        secureTextEntry={hidePass ? true : false}
                         mode="outlined"
                         outlineColor={PRIMARY}
                         theme={{colors: {primary: {PRIMARY}}}}
                         style={styles.textInput}
                         left={
                             <TextInput.Icon
-                            name={() => <AntDesign name={'lock1'} size={20} color={PRIMARY} />}
+                            name={() => <AntDesign name={'lock'} size={20} color={PRIMARY} />}
+                            />
+                        }
+                        right={
+                            <TextInput.Icon
+                            name={() => (
+                                <Entypo
+                                name={hidePass ? 'eye' : 'eye-with-line'}
+                                size={20}
+                                color={PRIMARY}
+                                onPress={() => setHidePass(!hidePass)}
+                                />
+                            )}
                             />
                         }
                     />
@@ -52,7 +78,7 @@ const SignIn = ({navigation}) => {
                 <TouchableOpacity activeOpacity={0.5} style={styles.forgotPasswordContainer} onPress={() => navigation.navigate('Forgot')}>
                     <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
                 </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.5} style={styles.loginButtonContainer}>
+                    <TouchableOpacity onPress={onLogin} activeOpacity={0.5} style={styles.loginButtonContainer}>
                         <Text style={styles.loginText}>Login</Text>
                     </TouchableOpacity>
             </View>
@@ -63,7 +89,7 @@ const SignIn = ({navigation}) => {
                 <MaterialIcons name={"copyright"} size={18} color={PRIMARY} />
                 <Text>Made by Ankit Dhawan for Grape Town Internship</Text>
             </View>
-        </View>
+        </SafeAreaView>
     )
 };
 
@@ -103,6 +129,7 @@ const styles = StyleSheet.create({
     componentsContainer: {
         flex: 1,
         justifyContent: 'center',
+        padding: 10
     },
     inputContainer: {
     },
