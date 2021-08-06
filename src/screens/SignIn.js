@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, SafeAreaView} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import {TextInput, HelperText} from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -15,14 +15,20 @@ const SignIn = ({navigation}) => {
     const [hidePass, setHidePass] = useState(true);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [usernameError, setUsernameError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
 
     const dispatch = useDispatch();
 
     const onLogin = () => {
-        dispatch(login({
-            email: username,
-            password: password
-        }))
+        if(!username) return setUsernameError(true)
+        else if(!password) return setPasswordError(true)
+        else {
+            dispatch(login({
+                email: username,
+                password: password
+            }))
+        }
     }
 
     return(
@@ -47,6 +53,10 @@ const SignIn = ({navigation}) => {
                             />
                         }
                     />
+                    <HelperText type="error" visible={usernameError}>
+                      This field can't be empty
+                    </HelperText>
+
                     <TextInput
                         label="Password"
                         onChangeText={setPassword}
@@ -74,6 +84,10 @@ const SignIn = ({navigation}) => {
                             />
                         }
                     />
+                    <HelperText type="error" visible={passwordError}>
+                      This field can't be empty
+                    </HelperText>
+
                 </View>
                 <TouchableOpacity activeOpacity={0.5} style={styles.forgotPasswordContainer} onPress={() => navigation.navigate('Forgot')}>
                     <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
@@ -134,7 +148,6 @@ const styles = StyleSheet.create({
     inputContainer: {
     },
     textInput: {
-        marginVertical: 5,
     },
     forgotPasswordContainer: {
         justifyContent: 'center',

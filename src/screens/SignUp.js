@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Text, View, StyleSheet, SafeAreaView, Image, Dimensions, TouchableOpacity} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import {TextInput, HelperText} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -24,6 +24,19 @@ const SignUp = ({navigation}) => {
         ...details,
         [field]: value,
       });
+      
+      const [usernameError, setUsernameError] = useState(false);
+      const [emailError, setEmailError] = useState(false);
+      const [passwordError, setPasswordError] = useState(false);
+      const [cPasswordError, setCPasswordError] = useState(false);
+
+    const onSubmit = () => {
+      if(!details.username) return setUsernameError(true)
+      else if(!details.email) return setEmailError(true)
+      else if(!details.password) return setPasswordError(true)
+      else if(!details.cPassword) return setCPasswordError(true)
+      else return navigation.goBack();
+    }
 
     return(
         <SafeAreaView style={styles.mainContainer}>
@@ -53,6 +66,9 @@ const SignUp = ({navigation}) => {
                         />
                     }
                 />
+                <HelperText type="error" visible={usernameError}>
+                  This field can't be empty
+                </HelperText>
 
                 <TextInput
                   label="Email"
@@ -68,6 +84,9 @@ const SignUp = ({navigation}) => {
                     />
                   }
                 />
+                <HelperText type="error" visible={emailError}>
+                  This field can't be empty
+                </HelperText>
         
                 <TextInput
                   label="Password"
@@ -96,6 +115,9 @@ const SignUp = ({navigation}) => {
                     />
                   }
                 />
+                <HelperText type="error" visible={passwordError}>
+                  This field can't be empty
+                </HelperText>
         
                 <TextInput
                   label="Confirm password"
@@ -124,8 +146,11 @@ const SignUp = ({navigation}) => {
                     />
                   }
                 />
+                <HelperText type="error" visible={cPasswordError}>
+                  This field can't be empty
+                </HelperText>
 
-                <TouchableOpacity activeOpacity={0.5} style={styles.loginButtonContainer}>
+                <TouchableOpacity onPress={onSubmit} activeOpacity={0.5} style={styles.loginButtonContainer}>
                     <Text style={styles.loginText}>Submit</Text>
                 </TouchableOpacity>
              </View>
@@ -153,7 +178,6 @@ const styles = StyleSheet.create({
       resizeMode: 'contain'
     },
     textInput: {
-        paddingVertical: 5
     },
     signupText: {
       fontSize: 26,
