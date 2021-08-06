@@ -1,8 +1,11 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, Dimensions, SafeAreaView} from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import { logout } from '../redux/actions/auth';
+import BottomTab from '../components/BottomTab';
+
+const {widht, height} = Dimensions.get('screen')
 
 const MainNavigator = () => {
     const dispatch = useDispatch();
@@ -13,10 +16,12 @@ const MainNavigator = () => {
         });
     }
     return(
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text>Dashboard Screen</Text>
-            <Button title="SignOut" onPress={onLogout} />
-        </View>
+        <>
+            <View style={{height}}>
+                <BottomTab />
+            </View>
+
+        </>
     )
 };
 
