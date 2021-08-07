@@ -1,9 +1,15 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, SafeAreaView} from 'react-native';
+
+import Stories from '../components/Stories';
+import DashboardFeed from '../components/DashboardFeed';
 
 const Dashboard = () => {
     return(
-        <Text>Dashboard</Text>
+        <SafeAreaView>
+            <Stories />
+            <DashboardFeed />
+        </SafeAreaView>
     )
 };
 

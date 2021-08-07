@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../redux/actions/auth';
 import BottomTab from '../components/BottomTab';
 
-const {widht, height} = Dimensions.get('screen')
+const {width, height} = Dimensions.get('screen')
 
 const MainNavigator = () => {
     const dispatch = useDispatch();

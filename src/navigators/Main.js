@@ -12,12 +12,14 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Entypo from 'react-native-vector-icons/Entypo'
 import Feather from 'react-native-vector-icons/Feather'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 AntDesign.loadFont();
 MaterialIcons.loadFont();
 Ionicons.loadFont();
 Entypo.loadFont();
 Feather.loadFont();
+FontAwesome.loadFont();
 
 const Main = () => {
     const {loading, loggedIn} = useSelector((state) => state)
