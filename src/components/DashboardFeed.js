@@ -32,6 +32,7 @@ const DashboardFeed = () => {
             <FlatList
             data={DATA}
             keyExtractor={item => item.id}
+            showsVerticalScrollIndicator={false}
             renderItem={({item}) => {
             return (
                 <View style={styles.singleFeedContainer}>
@@ -69,7 +70,6 @@ const DashboardFeed = () => {
 
 const styles = StyleSheet.create({
     mainContainer: {
-        paddingTop: 20,
     },
     singleFeedContainer: {
         marginVertical: 10
@@ -86,12 +86,11 @@ const styles = StyleSheet.create({
     },
     userName: {
         fontSize: 16,
-        paddingLeft: 15,
         fontWeight: '500',
         color: TEXT
     },
     nameAddressContainer: {
-        alignItems: 'center'
+        paddingLeft: 15
     },
     feedImageContainer: {
         width,

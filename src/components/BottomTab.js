@@ -2,7 +2,7 @@ import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 import {PRIMARY, BACKGROUND, WHITE_TEXT} from '../utils/colors';
-import Dashboard from '../screens/Dashboard';
+import DashboardNavigator from '../navigators/DashboardNavigator'
 import Search from '../screens/Search';
 import Post from '../screens/Post'
 import Notifications from '../screens/Notifications';
@@ -24,7 +24,7 @@ const BottomTab = () => {
         >
         <Tab.Screen
           name="Dashboard"
-          component={Dashboard}
+          component={DashboardNavigator}
           options={{
             tabBarIcon: ({color}) => (
               <AntDesign name="home" color={color} size={24} />
