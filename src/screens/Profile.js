@@ -1,11 +1,13 @@
 import React, {useRef} from 'react';
 import {Image, View, Text, SafeAreaView, StyleSheet, Dimensions} from 'react-native';
+import { useSelector } from 'react-redux';
 
 import ProfileHeader from '../components/ProfileHeader';
 
 const {width, height} = Dimensions.get('screen');
 
 const Profile = () => {
+    const {followers, following} = useSelector((state) => state)
 
     return(
         <SafeAreaView>
@@ -14,15 +16,15 @@ const Profile = () => {
                 <View style={styles.upperUserDetails}>
                     <Image source={require('../assets/AD.jpeg')} style={styles.userPhoto} />
                     <View style={styles.upperDetailsItemContainer}>
-                        <Text style={styles.upperDetailsBoldText}>12</Text>
+                        <Text style={styles.upperDetailsBoldText}>0</Text>
                         <Text style={styles.upperDetailsStandardText}>Posts</Text>
                     </View>
                     <View style={styles.upperDetailsItemContainer}>
-                        <Text style={styles.upperDetailsBoldText}>500</Text>
+                        <Text style={styles.upperDetailsBoldText}>{followers.length}</Text>
                         <Text style={styles.upperDetailsStandardText}>Followers</Text>
                     </View>
                     <View style={styles.upperDetailsItemContainer}>
-                        <Text style={styles.upperDetailsBoldText}>400</Text>
+                        <Text style={styles.upperDetailsBoldText}>{following.length}</Text>
                         <Text style={styles.upperDetailsStandardText}>Followings</Text>
                     </View>
                 </View>

@@ -4,8 +4,10 @@ import {TextInput, HelperText} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo';
+import { useDispatch } from 'react-redux';
 
 import {PRIMARY, BACKGROUND, WHITE_TEXT, TEXT} from '../utils/colors'
+import { signup } from '../redux/actions/auth';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -30,12 +32,22 @@ const SignUp = ({navigation}) => {
       const [passwordError, setPasswordError] = useState(false);
       const [cPasswordError, setCPasswordError] = useState(false);
 
+      const dispatch = useDispatch();
+
     const onSubmit = () => {
       if(!details.username) return setUsernameError(true)
       else if(!details.email) return setEmailError(true)
       else if(!details.password) return setPasswordError(true)
       else if(!details.cPassword) return setCPasswordError(true)
-      else return navigation.goBack();
+      else {
+        dispatch(
+            signup({
+              userUsername: details.username,
+              userEmail: details.email,
+              userPassword: details.password,
+            }),
+          );
+      }
     }
 
     return(
@@ -56,6 +68,7 @@ const SignUp = ({navigation}) => {
                     label="Username"
                     onChangeText={setDetails('username')}
                     value={details.username}
+                    autoCapitalize="none"
                     mode="outlined"
                     outlineColor={PRIMARY}
                     theme={{colors: {primary: {PRIMARY}}}}
@@ -74,6 +87,7 @@ const SignUp = ({navigation}) => {
                   label="Email"
                   onChangeText={setDetails('email')}
                   value={details.email}
+                  autoCapitalize="none"
                   mode="outlined"
                   outlineColor={PRIMARY}
                   theme={{colors: {primary: {PRIMARY}}}}
@@ -93,6 +107,7 @@ const SignUp = ({navigation}) => {
                   onChangeText={setDetails('password')}
                   value={details.password}
                   secureTextEntry={hidePass ? true : false}
+                  autoCapitalize="none"
                   mode="outlined"
                   outlineColor={PRIMARY}
                   theme={{colors: {primary: {PRIMARY}}}}
@@ -124,6 +139,7 @@ const SignUp = ({navigation}) => {
                   onChangeText={setDetails('cPassword')}
                   value={details.cPassword}
                   secureTextEntry={hideCPass ? true : false}
+                  autoCapitalize="none"
                   mode="outlined"
                   outlineColor={PRIMARY}
                   theme={{colors: {primary: {PRIMARY}}}}

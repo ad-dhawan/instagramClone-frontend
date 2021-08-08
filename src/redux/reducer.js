@@ -1,6 +1,12 @@
 const initialState = {
     loading: false,
     loggedIn: false,
+    username: null,
+    email: null,
+    id: null,
+    profilePicture: null,
+    followers: null,
+    followings: null
 };
 
 export default (state = initialState, action) => {

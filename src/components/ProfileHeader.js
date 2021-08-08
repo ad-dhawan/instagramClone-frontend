@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {View, Text, SafeAreaView, StyleSheet, TouchableOpacity} from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -12,6 +12,7 @@ const ProfileHeader = () => {
     const addPostRef = useRef();
     const menuRef = useRef();
     const dispatch = useDispatch();
+    const {username} = useSelector((state) => state);
 
     const onLogout = () => {
         dispatch({
@@ -22,7 +23,7 @@ const ProfileHeader = () => {
         <SafeAreaView>
             <View style={styles.header}>
                 <View>
-                    <Text style={styles.usernameText}>Username</Text>
+                    <Text style={styles.usernameText}>{username}</Text>
                 </View>
                 <View style={styles.headerIcons}>
                     <Ionicons onPress={() => addPostRef.current.open()} style={styles.headerIcon} name="add-circle-outline" size={36} />

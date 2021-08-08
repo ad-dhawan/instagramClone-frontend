@@ -45,6 +45,7 @@ const SignIn = ({navigation}) => {
                         label="Username"
                         onChangeText={setUsername}
                         value={username}
+                        autoCapitalize="none"
                         mode="outlined"
                         outlineColor={PRIMARY}
                         theme={{colors: {primary: {PRIMARY}}}}
@@ -64,6 +65,7 @@ const SignIn = ({navigation}) => {
                         onChangeText={setPassword}
                         value={password}
                         secureTextEntry={hidePass ? true : false}
+                        autoCapitalize="none"
                         mode="outlined"
                         outlineColor={PRIMARY}
                         theme={{colors: {primary: {PRIMARY}}}}
