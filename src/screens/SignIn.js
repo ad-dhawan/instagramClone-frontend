@@ -24,10 +24,12 @@ const SignIn = ({navigation}) => {
         if(!username) return setUsernameError(true)
         else if(!password) return setPasswordError(true)
         else {
-            dispatch(login({
-                email: username,
-                password: password
-            }))
+            dispatch(
+                login({
+                  userUsername: username,
+                  userPassword: password,
+                }),
+              );
         }
     }
 
