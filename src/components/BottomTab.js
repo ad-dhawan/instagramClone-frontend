@@ -23,7 +23,7 @@ const BottomTab = () => {
             inactiveColor="#cecece90"
         >
         <Tab.Screen
-          name="Dashboard"
+          name="Feed"
           component={DashboardNavigator}
           options={{
             tabBarIcon: ({color}) => (
@@ -41,11 +41,11 @@ const BottomTab = () => {
           }}
         />
         <Tab.Screen
-          name="Post"
+          name="Reel"
           component={Post}
           options={{
             tabBarIcon: ({color}) => (
-              <Ionicons name="add-circle-outline" color={color} size={24} />
+              <Feather name="video" color={color} size={24} />
             ),
           }}
         />
