@@ -15,7 +15,7 @@ import reel5 from '../assets/reel5.mp4'
 
 const {width, height} = Dimensions.get('screen');
 
-const Post = () => {
+const Post = ({navigation}) => {
 
     const DATA = [
         {
@@ -60,11 +60,11 @@ const Post = () => {
                 renderItem={({item}) => {
                     return (
                         <View style={styles.mainContainer}>
-                        <Video source={item.video} style={styles.video} audioOnly={false} playWhenInactive={false} playInBackground={false} repeat={true} />
+                        <Video source={item.video} style={styles.video} audioOnly={false} playWhenInactive={false} playInBackground={false} repeat={false} />
 
                         <SafeAreaView style={styles.headerContainer}>
                             <Text style={styles.headingTitle}>Reels</Text>
-                            <Entypo name="camera" size={32} color="white" style={styles.cameraIcon} />
+                            <Entypo onPress={() => navigation.navigate('Camera')} name="camera" size={32} color="white" style={styles.cameraIcon} />
                         </SafeAreaView>
 
                         <View style={styles.componentsContainer}>

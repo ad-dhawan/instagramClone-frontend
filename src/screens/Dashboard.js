@@ -13,7 +13,7 @@ const Dashboard = ({navigation}) => {
                 <Ionicons name="send" size={26} />
             </TouchableOpacity>
             <Stories />
-            <DashboardFeed />
+            <DashboardFeed navigation={navigation} />
         </SafeAreaView>
     )
 };

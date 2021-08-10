@@ -4,6 +4,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import {PRIMARY, BACKGROUND, WHITE_TEXT} from '../utils/colors';
 import DashboardNavigator from '../navigators/DashboardNavigator'
 import Search from '../screens/Search';
+import ReelsNavigator from '../navigators/ReelsNavigator';
 import Post from '../screens/Post'
 import Notifications from '../screens/Notifications';
 import Profile from '../screens/Profile';
@@ -42,7 +43,7 @@ const BottomTab = () => {
         />
         <Tab.Screen
           name="Reel"
-          component={Post}
+          component={ReelsNavigator}
           options={{
             tabBarIcon: ({color}) => (
               <Feather name="video" color={color} size={24} />

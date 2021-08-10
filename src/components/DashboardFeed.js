@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, Image, View, StyleSheet, Dimensions, FlatList} from 'react-native';
+import {Text, Image, View, StyleSheet, Dimensions, FlatList, TouchableOpacity} from 'react-native';
 import faker from 'faker';
 import { Caption } from 'react-native-paper';
 import Feather from 'react-native-vector-icons/Feather'
@@ -10,7 +10,7 @@ import { PRIMARY, TEXT, BACKGROUND } from '../utils/colors';
 
 const {width, height} = Dimensions.get('screen')
 
-const DashboardFeed = () => {
+const DashboardFeed = (props) => {
     const DATA = [];
     for(i=0; i<15; i++){
         DATA.push({
@@ -36,13 +36,16 @@ const DashboardFeed = () => {
             renderItem={({item}) => {
             return (
                 <View style={styles.singleFeedContainer}>
-            <View style={styles.userDetailsContainer}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('DashboardProfile', {
+                username: item.username,
+                avatar: item.avatar
+            })} style={styles.userDetailsContainer}>
                 <Image source={{uri: item.avatar}} style={styles.avatarImage} />
                 <View style={styles.nameAddressContainer}>
                     <Text style={styles.userName}>{item.username}</Text>
                     <Caption>{item.location}</Caption>
                 </View>
-            </View>
+            </TouchableOpacity>
             <View style={styles.feedImageContainer}>
                 <Image source={{uri: item.image}} style={styles.feedImage} />
             </View>
